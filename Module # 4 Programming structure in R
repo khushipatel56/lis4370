@@ -1,0 +1,39 @@
+# Load necessary library
+library(ggplot2)
+
+# Create the dataset
+data <- data.frame(
+  Frequency = c(0.6,0.3,0.4,0.4,0.2,0.6,0.3,0.4,0.9,0.2),
+  BP = c(103,87,32,42,59,109,78,205,135,176),
+  First = c(1,1,1,1,0,0,0,0,NA,1),  # Convert "bad" = 1, "good" = 0
+  Second = c(0,0,1,1,0,0,1,1,1,1),  # Convert "low" = 0, "high" = 1
+  FinalDecision = c(0,1,0,1,0,1,0,1,1,1)  # Convert "low" = 0, "high" = 1
+)
+
+# Create side-by-side boxplots for First and Second MD's ratings
+par(mfrow = c(1,2))  # Arrange plots side by side
+
+# Boxplot: Blood Pressure vs. First Doctor's Assessment
+boxplot(data$BP ~ data$First, 
+        main = "BP by First MD's Rating",
+        xlab = "First MD's Rating (0 = Good, 1 = Bad)", 
+        ylab = "Blood Pressure",
+        col = c("lightblue", "pink"))
+
+# Boxplot: Blood Pressure vs. Second Doctor's Assessment
+boxplot(data$BP ~ data$Second, 
+        main = "BP by Second MD's Rating",
+        xlab = "Second MD's Rating (0 = Low, 1 = High)", 
+        ylab = "Blood Pressure",
+        col = c("lightgreen", "orange"))
+
+# Reset plotting layout
+par(mfrow = c(1,1))
+
+# Histogram of Blood Pressure
+hist(data$BP, 
+     main = "Histogram of Blood Pressure Readings",
+     xlab = "Blood Pressure",
+     col = "red", 
+     border = "black", 
+     breaks = 5)
