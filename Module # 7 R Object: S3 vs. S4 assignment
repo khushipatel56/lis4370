@@ -55,12 +55,12 @@ setMethod("show", "product_data", function(object) {
 # Call the show method for the product object
 product_s4
 
-# Define an S4 class for a student with slots for name, age, grade, and courses
+# Example 2: Define an S4 class for a student with slots for name, age, grade, and courses
 setClass("student_info",
          slots = list(name = "character", age = "numeric", grade = "character", courses = "list")
 )
 
-# Example 2: Create an instance of the S4 class with specific values
+# Create an instance of the S4 class with specific values
 student_s4 <- new("student_info", name = "Alice", age = 22, grade = "B", courses = list("Math", "History", "Physics"))
 
 # Print the S4 object (default behavior using show method)
