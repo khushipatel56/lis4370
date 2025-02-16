@@ -1,0 +1,78 @@
+# Example 1: Create a simple S3 object representing a car
+
+car_s3 <- list(make = "Toyota", model = "Corolla", year = 2020, color = "Blue")
+
+# Assign a class to the object (making it an S3 object)
+class(car_s3) <- "car"
+
+# Create a generic print function for objects of class 'car'
+print.car <- function(x) {
+  cat("Car Make:", x$make, "\n")
+  cat("Car Model:", x$model, "\n")
+  cat("Car Year:", x$year, "\n")
+  cat("Car Color:", x$color, "\n")
+}
+
+# Call the print method for the car object
+print(car_s3)
+
+# Example 2: Create an S3 object representing a book
+
+book_s3 <- list(title = "The Great Gatsby", author = "F. Scott Fitzgerald", year = 1925, genre = "Novel")
+
+# Assign a class to the object (making it an S3 object)
+class(book_s3) <- "book"
+
+# Create a generic print function for objects of class 'book'
+print.book <- function(x) {
+  cat("Book Title:", x$title, "\n")
+  cat("Author:", x$author, "\n")
+  cat("Year Published:", x$year, "\n")
+  cat("Genre:", x$genre, "\n")
+}
+
+# Call the print method for the book object
+print(book_s3)
+
+# Example 1: Define an S4 class for a product with slots for name, price, and category
+setClass("product_data",
+         slots = list(name = "character", price = "numeric", category = "character")
+)
+
+# Create an instance of the S4 class with specific values
+product_s4 <- new("product_data", name = "Laptop", price = 1200, category = "Electronics")
+
+# Print the S4 object (default behavior using show method)
+print(product_s4)
+
+# Define a custom show method for the S4 class to display product details
+setMethod("show", "product_data", function(object) {
+  cat("Product Name:", object@name, "\n")
+  cat("Price:", object@price, "\n")
+  cat("Category:", object@category, "\n")
+})
+
+# Call the show method for the product object
+product_s4
+
+# Define an S4 class for a student with slots for name, age, grade, and courses
+setClass("student_info",
+         slots = list(name = "character", age = "numeric", grade = "character", courses = "list")
+)
+
+# Example 2: Create an instance of the S4 class with specific values
+student_s4 <- new("student_info", name = "Alice", age = 22, grade = "B", courses = list("Math", "History", "Physics"))
+
+# Print the S4 object (default behavior using show method)
+print(student_s4)
+
+# Define a custom show method for the S4 class to display student details
+setMethod("show", "student_info", function(object) {
+  cat("Student Name:", object@name, "\n")
+  cat("Age:", object@age, "\n")
+  cat("Grade:", object@grade, "\n")
+  cat("Courses:", paste(object@courses, collapse = ", "), "\n")
+})
+
+# Call the show method for the student object
+student_s4
